@@ -91,7 +91,7 @@
                       </label>
                       <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                      <button type="submit" class="btn text-white center" style="background-color:#B66639">{{ __('Connexion') }}</button>
+                      <button type="submit" class="btn text-white center" style="background-color:green">{{ __('Connexion') }}</button>
                         <div class="row mb-0">
                             <div class="col ">
                                 @if (Route::has('password.request'))
@@ -167,19 +167,21 @@
                                 </span>
                             @enderror
                         </div>
-
-                        <label for="password" class="col-md-4 col-form-label text-md-end fw-bold">{{ __('Confirme Mot de passe') }}</label>
-
-                        <div class="col-md-3">
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
                     </div>
+
+                        <div class="row mb-6">
+                          <label for="password" class="col-md-4 col-form-label text-md-end fw-bold">{{ __('Confirme Mot de passe') }}</label>
+
+                          <div class="col-md-3">
+                              <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                              @error('password')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                          </div>
+                        </div>
 
           </div>
 
@@ -305,6 +307,7 @@
     </div>
   </header><!-- End Header -->
 
+
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
 
@@ -326,6 +329,18 @@
     </div>
 
   </section><!-- End Hero -->
+
+  
+  @if(count($errors))>0)
+  <div class="alert alert-danger">
+    <ul>
+      @foreach($errors->all() as $error)
+      <li>{{ $error }}
+      </li>
+      @endforeach
+    </ul>
+  </div>
+  @endif
 
   <main id="main">
 

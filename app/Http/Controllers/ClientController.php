@@ -13,6 +13,7 @@ class ClientController extends Controller
     //
     public function viewForm()
     {
+
         return view ('clients.clientRegister');
     }
 
@@ -28,7 +29,7 @@ class ClientController extends Controller
                 'telephone' => ['required', 'string', 'max:25'],
                 'adresse' => ['required', 'string', 'max:100'],
                 'email' => ['required', 'string', 'max:100'],
-                'password' => ['required', 'string', 'min:8', 'max:50', 'confirmed'],
+                'password' => ['required', 'string', 'min:8', 'max:50'],
            ]
            );
 
@@ -63,7 +64,7 @@ class ClientController extends Controller
                     ]
                 );
 
-                return redirect('/client-register');
+                return redirect('/login');
                  
 
                }

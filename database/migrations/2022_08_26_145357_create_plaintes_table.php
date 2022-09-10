@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('plaintes', function (Blueprint $table) {
             $table->id();
             $table->string('message');
-            $table->unsignedBigInteger('clients_id');
-            $table->foreign('clients_id')
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')
             ->references('id')
-            ->on('clients')
+            ->on('users')
             ->onDelete('cascade');
             $table->timestamps();
         });

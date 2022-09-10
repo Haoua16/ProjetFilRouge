@@ -2,66 +2,35 @@
 
 @section('Tenin')
 
-<style>
-  .uper {
-    margin-top: 40px;
-  }
+<link href="{{ asset ('css/bootstrap.min.css')}}" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link href="{{ asset ('css/offcanvas.css')}}" rel="stylesheet">
 
-  thead {
-    font-weight: bold;
-    text-align: center;
-    background-color: white;
-    cursor: pointer;
-  }
-
-  /* button{
-    margin-left: 30%;
-  } */
-
-  /* .thead:hover {
-    color:white;
-  } */
-
-  h3{
-    text-align: center;
-    margin-top: -60px;
-    text-transform: uppercase;
-  }
-  .uper{
-    background-color: white;
-  }
-</style>
-
-<div class="uper">
-
-  @if(session()->get('success'))
+  <!-- original table -->
+@if(session()->get('success'))
     <div class="alert alert-success">
       {{ session()->get('success') }}  
     </div><br />
   @endif
 
-  
+  <table class="table table-bordered table-responsive" id="scrollb">
+  <div class="titre"  style="margin-top: -7px; font-size: 150%;">Liste des Chauffeurs</div></br>
 
-  <table class="table-striped table-hover table-bordered justify-content-center h-100" style="margin-top: 30px; width: 900px; margin:auto; color:black">
-  <h3 class="text-center">Liste des Chauffeurs</h3></br>
-
-    <thead>
+ <thead>
         <tr>
           <!-- <td>ID</td> -->
-          <td class="h5">Nom</td>
-          <td class="h5">Prenom</td>
-          <td class="h5">Ville</td>
-          <td colspan="">Action</td>
+          <th scope="col">Nom</th>
+          <th scope="col">Prenom</th>
+          <th scope="col">Ville</th>
+          <th scope="col" colspan="2">Action</th>
         </tr>
     </thead>
-
     <tbody>
         @foreach($chauffeurs as $chauffeurs)
         <tr>
-            <!-- <td>{{$chauffeurs->id}}</td> -->
-            <td class="text-center h5">{{$chauffeurs->nom}}</td>
-            <td class="text-center h5">{{$chauffeurs->prenom}}</td>
-            <td class="text-center h5">{{$chauffeurs->ville}}</td>
+            
+            <th scope="row">{{$chauffeurs->nom}}</th>
+            <td>{{$chauffeurs->prenom}}</td>
+            <td>{{$chauffeurs->ville}}</td>
             @if(Auth::check() && Auth::user()->statut=="directeur")
             <td><a href="{{ route('chauffeur.edit', $chauffeurs->id)}}" class="btn btn-success btn-sm">Modifier</a>
             @endif
@@ -83,8 +52,21 @@
         </tr>
         @endforeach
     </tbody>
-  </table>
-<div>
+</table>
+</div>
 
-@endsection
+  <!-- End original table -->
+
+  
+<script>
+  $(document).ready(function () {
+    $('#scrollb').DataTable({
+        scrollX: true,
+    });
+});
+</script>
+
+@endsection  
+
+
 

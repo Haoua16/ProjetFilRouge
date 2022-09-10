@@ -66,11 +66,13 @@ Route::get('/clientreserv1', [App\Http\Controllers\ReservationController::class,
 
 Route::get('/comptablevoyage', [App\Http\Controllers\ReservationController::class, 'comptablevoyage'])->name('comptable.voyage');
 Route::get('/comptablereservation', [App\Http\Controllers\VoyageController::class, 'comptablereservation'])->name('comptable.reservation');
+Route::get('/comptablepassager', [App\Http\Controllers\PassagerController::class, 'comptablepassager'])->name('comptable.passager');
 Route::get('/comptablecourrier', [App\Http\Controllers\CourrierController::class, 'comptablecourrier'])->name('comptable.courrier');
 Route::get('/comptablebagage', [App\Http\Controllers\BagageController::class, 'comptablebagage'])->name('comptable.bagage');
 Route::get('/comptablereserv1', [App\Http\Controllers\ReservationController::class, 'comptablereserv1'])->name('comptable.reserv');
 
 Route::get('/gescourriervoyage', [App\Http\Controllers\ReservationController::class, 'gescourriervoyage'])->name('gescourrier.voyage');
+Route::get('/gescourrierlistevoyage', [App\Http\Controllers\ReservationController::class, 'gescourrierlistevoyage'])->name('gescourrierliste.voyage');
 Route::get('/gescourrierreserv1', [App\Http\Controllers\ReservationController::class, 'gescourrierreserv1'])->name('gescourrier.reserv');
 
 
@@ -81,6 +83,7 @@ Route::get('/administrateurreserv1', [App\Http\Controllers\ReservationController
 Route::get('/directeurvoyage', [App\Http\Controllers\ReservationController::class, 'directeurvoyage'])->name('directeur.voyage');
 Route::get('/directeurreservation', [App\Http\Controllers\VoyageController::class, 'directeurreservation'])->name('directeur.reservation');
 Route::get('/directeurcourrier', [App\Http\Controllers\CourrierController::class, 'directeurcourrier'])->name('directeur.courrier');
+Route::get('/directeurpassager', [App\Http\Controllers\PassagerController::class, 'directeurpassager'])->name('directeur.passager');
 Route::get('/directeurbagage', [App\Http\Controllers\BagageController::class, 'directeurbagage'])->name('directeur.bagage');
 Route::get('/directeurlistevoyage', [App\Http\Controllers\ReservationController::class, 'directeurlistevoyage'])->name('directeurliste.voyage');
 Route::get('/directeurreserv1', [App\Http\Controllers\ReservationController::class, 'directeurreserv1'])->name('directeur.reserv');
@@ -99,4 +102,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [App\Http\Controllers\Dashboard::class, 'dashboard'])->name('dashboard');
-Route::get('/dashboard-statistique', [App\Http\Controllers\Dashboard::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('administrateurs.dashboard');

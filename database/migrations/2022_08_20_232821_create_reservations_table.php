@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->string('nombreplace');
+            $table->string('statut');
             $table->unsignedBigInteger('users_id');
             $table->foreign('users_id')
             ->references('id')

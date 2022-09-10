@@ -1,12 +1,18 @@
 <!-- create.blade.php -->
-@extends('dashboard.dashboard')
+@extends('clientdash.dashboard')
 
-@section('Haoua')
+@section('Haby')
 
 <style>
-  .uper {
-    
-    margin-top: 40px;
+ .uper 
+  {
+    background-color: #F2F4F4;
+  }
+
+  input
+  {
+    border: 2px;
+    border-color: black;
   }
 </style>
 

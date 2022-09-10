@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\plainte;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PlainteController extends Controller
 {
@@ -47,14 +47,20 @@ public function create()
     
         $validatedData = $request->validate([
             'message' => 'required|max:255',
-            'userId' => 'max:255'
+            'users_id' => 'required',
         ]);
     
-        $plaintes = plainte::create($validatedData);
+    if ($validatedData){
+        
+        $users=Auth::user()->id;
+        $plaintes = plainte::create([
+            'message'=>$request['message'],
+            'users_id'=>$users,   
+        ]);
     
         return redirect('/plainte')->with('success', 'bus ajouté avec succèss');
     }
-    
+}
 
     /**
      * Display the specified resource.
@@ -95,13 +101,15 @@ public function update(Request $request, $id)
 {
     $validatedData = $request->validate([
         'message' => 'required|max:255',
-        'userId' => 'max:255',
+        'users_id' => 'max:255',
     ]);
 
     $plaintes = plainte::whereId($id)->update($validatedData);
 
     return redirect('/plainte')->with('Success', 'bus mise à jour avec succèss');
 }
+
+
 
     /**
      * Remove the specified resource from storage.

@@ -19,6 +19,8 @@ class VoyageController extends Controller
     public function index()
 {
     $voyages = voyage::all();
+    // dd($voyages);
+    
 
     return view('voyage.index', compact('voyages'));
 }

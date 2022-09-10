@@ -2,502 +2,1055 @@
 <html lang="en">
 
 <head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Bienvenue sur votre dashboard</title>
+  <!-- base:css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ asset('dasch/vendors/typicons/typicons.css')}}">
+  <link rel="stylesheet" href="{{ asset('dasch/vendors/css/vendor.bundle.base.css')}}">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Dashboard_Comptable</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- Custom styles for this template-->
-    <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
-
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{{ asset('dasch/css/vertical-layout-light/style.css')}}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{{ asset('dasch/images/favicon.png')}}" />
 </head>
-
-<body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="">
-                </div>
-                <div class="sidebar-brand-text mx-3" style="font-family:georgia;">SINGUAI-BANA</div>
+<body>
+  <!-- <div class="row" id="proBanner">
+    <div class="col-12">
+      <span class="d-flex align-items-center purchase-popup">
+        <p>Get tons of UI components, Plugins, multiple layouts, 20+ sample pages, and more!</p>
+        <a href="https://bootstrapdash.com/demo/polluxui/template/index.html?utm_source=organic&utm_medium=banner&utm_campaign=free-preview" target="_blank" class="btn download-button purchase-button ml-auto">Upgrade To Pro</a>
+        <i class="typcn typcn-delete-outline" id="bannerClose"></i>
+      </span>
+    </div>
+  </div> -->
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="navbar-brand-wrapper d-flex justify-content-center">
+        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+          <a class="navbar-brand brand-logo" href="index.html"><img src="{{ asset('dasch/images/logo.png')}}" alt="logo"  style="width:60px; height:60px;"/></a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{ asset('dasch/images/logo-mini.png')}}" alt="logo"  style="width:60px; height:60px;"/></a>
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="typcn typcn-th-menu"></span>
+          </button>
+        </div>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="{{ asset('dasch/images/faces/face5.jpg')}}" alt="profile"/>
+              <span class="nav-profile-name">{{ Auth::user()->name }} {{ Auth::user()->prenom }}</span>
             </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item">
+                <i class="typcn typcn-cog-outline text-primary"></i>
+                Reglage
+              </a>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    <span  style="font-size: 10px; font-family:trebruchet ms;"><strong>Se déconnecter</strong></span></a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span style="font-size: 17px; font-family:georgia;" >Dashboard_Comptable</span></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                </form>
             </li>
+                <!-- <i class="typcn typcn-eject text-primary"></i>
+                Logout -->
+            </div>
+          </li>
+          <!-- <li class="nav-item nav-user-status dropdown">
+              <p class="mb-0">En ligne</p>
+          </li> -->
+        </ul>
+        <!-- <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-date dropdown">
+            <a class="nav-link d-flex justify-content-center align-items-center" href="{{ asset('dasch/javascript:;')}}">
+              <h6 class="date mb-0">Aujourd'hui : 23 Mars</h6>
+              <i class="typcn typcn-calendar"></i>
+            </a>
+          </li> -->
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
+              <i class="typcn typcn-cog-outline mx-0"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                    <img src="{{ asset('dasch/images/faces/face4.jpg')}}" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-normal">David Grey
+                  </h6>
+                  <p class="font-weight-light small-text text-muted mb-0">
+                    The meeting is cancelled
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                    <img src="{{ asset('dasch/images/faces/face2.jpg')}}" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
+                  </h6>
+                  <p class="font-weight-light small-text text-muted mb-0">
+                    New product launch
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                    <img src="{{ asset('dasch/images/faces/face3.jpg')}}" alt="image" class="profile-pic">
+                </div>
+                <div class="preview-item-content flex-grow">
+                  <h6 class="preview-subject ellipsis font-weight-normal"> Johnson
+                  </h6>
+                  <p class="font-weight-light small-text text-muted mb-0">
+                    Upcoming board meeting
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li> -->
+          <!-- <li class="nav-item dropdown mr-0">
+            <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="typcn typcn-bell mx-0"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="typcn typcn-info mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Just now
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-warning">
+                    <i class="typcn typcn-cog-outline mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Settings</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Private message
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="typcn typcn-user mx-0"></i> 
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    2 days ago
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="typcn typcn-th-menu"></span>
+        </button>
+      </div> -->
+    </nav>
+    <!-- partial -->
+    <nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0">
+      <div class="navbar-links-wrapper d-flex align-items-stretch">
+        <div class="nav-link">
+          <a href="{{ asset('dasch/javascript:;')}}"><i class="typcn typcn-calendar-outline"></i></a>
+        </div>
+        <div class="nav-link">
+          <a href="{{ asset('dasch/javascript:;')}}"><i class="typcn typcn-mail"></i></a>
+        </div>
+        <div class="nav-link">
+          <a href="{{ asset('dasch/javascript:;')}}"><i class="typcn typcn-folder"></i></a>
+        </div>
+        <div class="nav-link">
+          <a href="{{ asset('dasch/javascript:;')}}"><i class="typcn typcn-document-text"></i></a>
+        </div>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item ml-0">
+            <h4 class="mb-0">Dashboard</h4>
+          </li>
+          <li class="nav-item">
+            <div class="d-flex align-items-baseline">
+              <p class="mb-0">Accueil</p>
+              <i class="typcn typcn-chevron-right"></i>
+              <p class="mb-0">Dashboard_Comptable</p>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-search d-none d-md-block mr-0">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search..." aria-label="search" aria-describedby="search">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="search">
+                  <i class="typcn typcn-zoom"></i>
+                </span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      <div class="theme-setting-wrapper">
+        <div id="settings-trigger"><i class="typcn typcn-cog-outline"></i></div>
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close typcn typcn-times"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles default"></div>
+          </div>
+        </div>
+      </div>
+      <div id="right-sidebar" class="settings-panel">
+        <i class="settings-close typcn typcn-times"></i>
+        <ul class="nav nav-tabs" id="setting-panel" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="setting-content">
+          <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel" aria-labelledby="todo-section">
+            <div class="add-items d-flex px-3 mb-0">
+              <form class="form w-100">
+                <div class="form-group d-flex">
+                  <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
+                  <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Ajouter</button>
+                </div>
+              </form>
+            </div>
+            <div class="list-wrapper px-3">
+              <ul class="d-flex flex-column-reverse todo-list">
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Team review meeting at 3.00 PM
+                    </label>
+                  </div>
+                  <i class="remove typcn typcn-delete-outline"></i>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Prepare pour la presentation
+                    </label>
+                  </div>
+                  <i class="remove typcn typcn-delete-outline"></i>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Resolve all the low priority tickets due today
+                    </label>
+                  </div>
+                  <i class="remove typcn typcn-delete-outline"></i>
+                </li>
+                <li class="completed">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox" checked>
+                      Schedule meeting for next week
+                    </label>
+                  </div>
+                  <i class="remove typcn typcn-delete-outline"></i>
+                </li>
+                <li class="completed">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox" checked>
+                      Voir les projects
+                    </label>
+                  </div>
+                  <i class="remove typcn typcn-delete-outline"></i>
+                </li>
+              </ul>
+            </div>
+            <div class="events py-4 border-bottom px-3">
+              <div class="wrapper d-flex mb-2">
+                <i class="typcn typcn-media-record-outline text-primary mr-2"></i>
+                <span>Feb 11 2018</span>
+              </div>
+              <p class="mb-0 font-weight-thin text-gray">Creating component page</p>
+              <p class="text-gray mb-0">build a js based app</p>
+            </div>
+            <div class="events pt-4 px-3">
+              <div class="wrapper d-flex mb-2">
+                <i class="typcn typcn-media-record-outline text-primary mr-2"></i>
+                <span>Feb 7 2018</span>
+              </div>
+              <p class="mb-0 font-weight-thin text-gray">Meeting with Alisa</p>
+              <p class="text-gray mb-0 ">Call Sarah Graves</p>
+            </div>
+          </div>
+          <!-- To do section tab ends -->
+          <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
+            <div class="d-flex align-items-center justify-content-between border-bottom">
+              <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
+              <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See All</small>
+            </div>
+            <ul class="chat-list">
+              <li class="list active">
+                <div class="profile"><img src="{{ asset('dasch/images/faces/face1.jpg')}}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Thomas Douglas</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">19 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{{ asset('dasch/images/faces/face2.jpg')}}" alt="image"><span class="offline"></span></div>
+                <div class="info">
+                  <div class="wrapper d-flex">
+                    <p>Catherine</p>
+                  </div>
+                  <p>Away</p>
+                </div>
+                <div class="badge badge-success badge-pill my-auto mx-2">4</div>
+                <small class="text-muted my-auto">23 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{{ asset('dasch/images/faces/face3.jpg')}}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Daniel Russell</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">14 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{{ asset('dasch/images/faces/face4.jpg')}}" alt="image"><span class="offline"></span></div>
+                <div class="info">
+                  <p>James Richardson</p>
+                  <p>Away</p>
+                </div>
+                <small class="text-muted my-auto">2 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{{ asset('dasch/images/faces/face5.jpg')}}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Madeline Kennedy</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">5 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{{ asset('dasch/images/faces/face6.jpg')}}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Sarah Graves</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">47 min</small>
+              </li>
+            </ul>
+          </div>
+          <!-- chat tab ends -->
+        </div>
+      </div>
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/home">
+              <i class="typcn typcn-device-desktop menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+              <div class="badge badge-danger">Nouveau</div>
+            </a>
+          </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+              <i class="typcn typcn-document-text menu-icon"></i>
+              <span class="menu-title">Liste Réservations</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="/comptablereservation">>En ligne</a></li>
+              </ul>
+            </div>
+           
+          <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="/comptablepassager">Physique</a></li>
+              </ul>
             </div>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/home">
-                    <span style="font-size: 18px; font-family:trebruchet ms;"><strong>Accueil</strong></span></a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/comptablevoyage">
-                    <span style="font-size: 18px; font-family:trebruchet ms;"><strong>Reserver</strong></span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/reservation">
-                    <span style="font-size: 18px; font-family:trebruchet ms;"><strong>Voyages en cours</strong></span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/comptablereserv1">
-                    <span style="font-size: 18px; font-family:trebruchet ms;"><strong>Mes voyages</strong></span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/comptablereservation">
-                    <span style="font-size: 18px; font-family:trebruchet ms;"><strong>Liste Reservations</strong></span></a>
-            </li>
-
-             <!-- Nav Item - Utilities Collapse Menu -->
-              <!-- <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span style="font-size: 18px; font-family:trebruchet ms;">Enrégistrer</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Enrégistrer</h6>
-                        <a class="collapse-item" href="bagage/create">Bagages</a>
-                        <a class="collapse-item" href="courrier/create">Courriers</a>
-                    </div>
-                </div>
-            </li> -->
 
             <li class="nav-item">
                 <a class="nav-link" href="/comptablebagage">
-                    <span style="font-size: 18px; font-family:trebruchet ms;"><strong>Liste Bagages</strong></span></a>
+                <i class="typcn typcn-document-text menu-icon"></i>
+              <span class="menu-title">Liste Bagages</span></a>
             </li>
 
-            
             <li class="nav-item">
                 <a class="nav-link" href="/comptablecourrier">
-                    <span style="font-size: 18px; font-family:trebruchet ms;"><strong>Liste Courriers</strong></span></a>
+                <i class="typcn typcn-document-text menu-icon"></i>
+              <span class="menu-title">Liste Courriers</span></a>
+            </li>
+          <!--<li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+              <i class="typcn typcn-film menu-icon"></i>
+              <span class="menu-title">Réservation</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="chauffeur/create">Chauffeurs</a></li>
+              </ul>
+            </div>
+           
+          <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="bus/create">Bus</a></li>
+              </ul>
+            </div>
+
+            </li> -->
+
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="typcn typcn-document-text menu-icon"></i>
+              <span class="menu-title">Superviser</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/directeurlistevoyage">Voyages</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/directeurreservation">Reservations</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/directeurpassager">Passagers</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/directeurbagage">Bagages</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/directeurcourrier">Courriers</a>
+                <li class="nav-item"> <a class="nav-link" href="/chauffeur">Chauffeur</a>
+                <li class="nav-item"> <a class="nav-link" href="/bus">Bus</a>
+                <li class="nav-item"> <a class="nav-link" href="/directeurrembourssement">Rembourssements</a>
+
+              </ul>
+            </div>
+          </li> -->
+
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="typcn typcn-document-text menu-icon"></i>
+              <span class="menu-title">Voir liste</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/voyage">Voyages</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/reservation">Reservations</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/passager">Passagers</a></li>
+              </ul>
+            </div>
+          </li> -->
+
+          <li class="nav-item">
+                <a class="nav-link" href="tel: +223 94 58 71 67">
+                <i class="fa fa-phone"></i>
+                    <span class="menu-title" style="margin-left: 11%;">Contact</span></a>
             </li>
 
-            <!-- <li class="nav-item">
-                <i class="fa fa-phone"><a href="tel: +223 94 58 71 67"></a></i>
-                    <span style="font-size: 18px; font-family:trebruchet ms;">Contact</span></a>
-            </li> -->
+           
 
             <li class="nav-item">
                 <a class="nav-link" href="/commentaire">
-                    <span style="font-size: 18px; font-family:trebruchet ms;"><strong>Commentaires</strong></span></a>
+                <i class="typcn typcn-document-text menu-icon"></i>
+              <span class="menu-title">Commentaires</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/rembourssement">
-                    <span style="font-size: 18px; font-family:trebruchet ms;"><strong>Liste Rembourssements</strong></span></a>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="dashboard/statistiqus">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span style="font-size: 18px; font-family:trebruchet ms;"><strong>Statistique</strong></span></a>
-            </li>
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+              <i class="typcn typcn-film menu-icon"></i>
+              <span class="menu-title">Rembourssement</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="rembourssement/create">Remboursser</a></li>
+              </ul>
+            </div>
+           
+          <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="/rembourssement">Liste Rembourssements</a></li>
+              </ul>
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <!-- <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span style="font-size: 18px; font-family:trebruchet ms;">Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li> -->
-
-            
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span style="font-size: 18px; font-family:trebruchet ms;"><strong>Tables</strong></span></a>
             </li>
 
-              <!-- Nav Item - Pages Collapse Menu -->
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span style="font-size: 18px; font-family:trebruchet ms;"><strong>Paramètre</strong></span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Mots de passe</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <!-- <a class="collapse-item" href="cards.html">Cards</a> -->
-                    </div>
-                </div>
-            </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/rembourssement">
-                    <span style="font-size: 10px; font-family:trebruchet ms;"><strong>Se déconnecter</strong></span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+              <i class="typcn typcn-th-small-outline menu-icon"></i>
+              <span class="menu-title">Tables</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="tables">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a></li>
+              </ul>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+              <i class="typcn typcn-compass menu-icon"></i>
+              <span class="menu-title">Icons</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="icons">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/icons/mdi.html">Mdi icons</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="typcn typcn-user-add-outline menu-icon"></i>
+              <span class="menu-title">User Pages</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
+              </ul>
+            </div>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+              <i class="typcn typcn-globe-outline menu-icon"></i>
+              <span class="menu-title">Error pages</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="error">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
+              </ul>
+            </div>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="https://bootstrapdash.com/demo/polluxui-free/docs/documentation.html">
+              <i class="typcn typcn-mortar-board menu-icon"></i>
+              <span class="menu-title">Documentation</span>
+            </a>
+          </li> -->
 
-            <!-- Sidebar Message -->
-            <!-- <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div> -->
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+              <i class="typcn typcn-chart-pie-outline menu-icon"></i>
+              <span class="menu-title">Statistiques</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/dashboard">Statistique</a></li>
+              </ul>
+            </div>
+          </li>
 
+          <li class="nav-item">
+                <a class="nav-link" href="#Paramètres">
+                <i class="typcn typcn-cog-outline text-primary"></i>
+                    <span class="menu-title" style="margin-left: 11%;">Paramètres</span>
+                </a>
+            </li>
         </ul>
-        <!-- End of Sidebar -->
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+        @yield('Solo')
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <!-- <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
+          <!-- <div class="row">
+            <div class="col-xl-6 grid-margin stretch-card flex-column">
+                <h5 class="mb-2 text-titlecase mb-4">Status statistics</h5>
+              <div class="row">
+                <div class="col-md-6 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <p class="mb-0 text-muted">Transactions</p>
+                        <p class="mb-0 text-muted">+1.37%</p>
+                      </div>
+                      <h4>1352</h4>
+                      <canvas id="transactions-chart" class="mt-auto" height="65"></canvas>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div>
+                          <p class="mb-2 text-muted">Sales</p>
+                          <h6 class="mb-0">563</h6>
                         </div>
-                    </form> -->
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <!-- <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div> -->
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }} {{ Auth::user()->prenom }}
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800"  style="font-size: 30px; font-family:georgia;">Singuai-Bana</h1>
-                        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+                        <div>
+                          <p class="mb-2 text-muted">Orders</p>
+                          <h6 class="mb-0">720</h6>
+                        </div>
+                        <div>
+                          <p class="mb-2 text-muted">Revenue</p>
+                          <h6 class="mb-0">5900</h6>
+                        </div>
+                      </div>
+                      <canvas id="sales-chart-a" class="mt-auto" height="65"></canvas>
                     </div>
-
-                    @yield('Solo')
-                    
-
+                  </div>
                 </div>
-                <!-- /.container-fluid -->
-
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span style="font-size: 18px; font-family:trebruchet ms;">Copyright &copy; Your Website 2021</span>
+              </div>
+              <div class="row h-100">
+                <div class="col-md-6 stretch-card grid-margin grid-margin-md-0">
+                  <div class="card">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <p class="text-muted">Sales Analytics</p>
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h3 class="mb-">27632</h3>
+                        <h3 class="mb-">78%</h3>
+                      </div>
+                      <canvas id="sales-chart-b" class="mt-auto" height="38"></canvas>
                     </div>
+                  </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                <div class="col-md-6 stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row h-100">
+                        <div class="col-6 d-flex flex-column justify-content-between">
+                          <p class="text-muted">CPU</p>
+                          <h4>55%</h4>
+                          <canvas id="cpu-chart" class="mt-auto"></canvas>
+                        </div>
+                        <div class="col-6 d-flex flex-column justify-content-between">
+                          <p class="text-muted">Memory</p>
+                          <h4>123,65</h4>
+                          <canvas id="memory-chart" class="mt-auto"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
+              </div>
             </div>
-        </div>
+            <div class="col-xl-6 grid-margin stretch-card flex-column">
+              <h5 class="mb-2 text-titlecase mb-4">Income statistics</h5>
+              <div class="row h-100">
+                <div class="col-md-12 stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-start flex-wrap">
+                        <div>
+                          <p class="mb-3">Monthly Increase</p>
+                          <h3>67842</h3>
+                        </div>
+                        <div id="income-chart-legend" class="d-flex flex-wrap mt-1 mt-md-0"></div>
+                      </div>
+                      <canvas id="income-chart"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xl-4 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body border-bottom">
+                  <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-2 mb-md-0 text-uppercase font-weight-medium">Overall sales</h6>
+                    <div class="dropdown">
+                      <button class="btn bg-white p-0 pb-1 text-muted btn-sm dropdown-toggle" type="button" id="dropdownMenuSizeButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Last 30 days
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
+                        <h6 class="dropdown-header">Settings</h6>
+                        <a class="dropdown-item" href="{{ asset('dasch/javascript:;')}}">Action</a>
+                        <a class="dropdown-item" href="{{ asset('dasch/javascript:;')}}">Another action</a>
+                        <a class="dropdown-item" href="{{ asset('dasch/javascript:;')}}">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ asset('dasch/javascript:;')}}">Separated link</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <canvas id="sales-chart-c" class="mt-2"></canvas>
+                  <div class="d-flex align-items-center justify-content-between border-bottom pb-3 mb-3 mt-4">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                      <p class="text-muted">Gross Sales</p>
+                      <h5>492</h5>
+                      <div class="d-flex align-items-baseline">
+                        <p class="text-success mb-0">0.5%</p>
+                        <i class="typcn typcn-arrow-up-thick text-success"></i>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                      <p class="text-muted">Purchases</p>
+                      <h5>87k</h5>
+                      <div class="d-flex align-items-baseline">
+                        <p class="text-success mb-0">0.8%</p>
+                        <i class="typcn typcn-arrow-up-thick text-success"></i>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                      <p class="text-muted">Tax Return</p>
+                      <h5>882</h5>
+                      <div class="d-flex align-items-baseline">
+                        <p class="text-danger mb-0">-04%</p>
+                        <i class="typcn typcn-arrow-down-thick text-danger"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="dropdown">
+                      <button class="btn bg-white p-0 pb-1 pt-1 text-muted btn-sm dropdown-toggle" type="button" id="dropdownMenuSizeButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Last 7 days
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
+                        <h6 class="dropdown-header">Settings</h6>
+                        <a class="dropdown-item" href="{{ asset('dasch/javascript:;')}}">Action</a>
+                        <a class="dropdown-item" href="{{ asset('dasch/javascript:;')}}">Another action</a>
+                        <a class="dropdown-item" href="{{ asset('dasch/javascript:;')}}">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ asset('dasch/javascript:;')}}">Separated link</a>
+                      </div>
+                    </div>
+                    <p class="mb-0">overview</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-4 grid-margin stretch-card">
+              <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                  <div class="card newsletter-card bg-gradient-warning">
+                    <div class="card-body">
+                      <div class="d-flex flex-column align-items-center justify-content-center h-100">
+                        <h5 class="mb-3 text-white">Newsletter</h5>
+                        <form class="form d-flex flex-column align-items-center justify-content-between w-100">
+                          <div class="form-group mb-2 w-100">
+                            <input type="text" class="form-control" placeholder="email address">
+                          </div>
+                          <button class="btn btn-danger btn-rounded mt-1" type="submit">Subscribe</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12 stretch-card">
+                  <div class="card profile-card bg-gradient-primary">
+                    <div class="card-body">
+                      <div class="row align-items-center h-100">
+                        <div class="col-md-4">
+                          <figure class="avatar mx-auto mb-4 mb-md-0">
+                            <img src="{{ asset('dasch/images/faces/face20.jpg')}}" alt="avatar">
+                          </figure>
+                        </div>
+                        <div class="col-md-8">
+                          <h5 class="text-white text-center text-md-left">Phoebe Kennedy</h5>
+                          <p class="text-white text-center text-md-left">kennedy@gmail.com</p>
+                          <div class="d-flex align-items-center justify-content-between info pt-2">
+                            <div>
+                              <p class="text-white font-weight-bold">Birth date</p>
+                              <p class="text-white font-weight-bold">Birth city</p>
+                            </div>
+                            <div>
+                              <p class="text-white">16 Sep 2019</p>
+                              <p class="text-white">Netherlands</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-xl-4 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body border-bottom">
+                  <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-2 mb-md-0 text-uppercase font-weight-medium">Sales statistics</h6>
+                    <div class="dropdown">
+                      <button class="btn bg-white p-0 pb-1 text-muted btn-sm dropdown-toggle" type="button" id="dropdownMenuSizeButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Last 7 days
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton4">
+                        <h6 class="dropdown-header">Settings</h6>
+                        <a class="dropdown-item" href="{{ asset('dasch/javascript:;')}}">Action</a>
+                        <a class="dropdown-item" href="{{ asset('dasch/javascript:;')}}">Another action</a>
+                        <a class="dropdown-item" href="{{ asset('dasch/javascript:;')}}">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ asset('dasch/javascript:;')}}">Separated link</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <canvas id="sales-chart-d" height="320"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
+                    <div>
+                      <p class="mb-2 text-md-center text-lg-left">Total Expenses</p>
+                      <h1 class="mb-0">8742</h1>
+                    </div>
+                    <i class="typcn typcn-briefcase icon-xl text-secondary"></i>
+                  </div>
+                  <canvas id="expense-chart" height="80"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
+                    <div>
+                      <p class="mb-2 text-md-center text-lg-left">Total Budget</p>
+                      <h1 class="mb-0">47,840</h1>
+                    </div>
+                    <i class="typcn typcn-chart-pie icon-xl text-secondary"></i>
+                  </div>
+                  <canvas id="budget-chart" height="80"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex align-items-center justify-content-between justify-content-md-center justify-content-xl-between flex-wrap mb-4">
+                    <div>
+                      <p class="mb-2 text-md-center text-lg-left">Total Balance</p>
+                      <h1 class="mb-0">$7,243</h1>
+                    </div>
+                    <i class="typcn typcn-clipboard icon-xl text-secondary"></i>
+                  </div>
+                  <canvas id="balance-chart" height="80"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="table-responsive pt-3">
+                  <table class="table table-striped project-orders-table">
+                    <thead>
+                      <tr>
+                        <th class="ml-5">ID</th>
+                        <th>Project name</th>
+                        <th>Customer</th>
+                        <th>Deadline</th>
+                        <th>Payouts	</th>
+                        <th>Traffic</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>#D1</td>
+                        <td>Consectetur adipisicing elit </td>
+                        <td>Beulah Cummings</td>
+                        <td>03 Jan 2019</td>
+                        <td>$ 5235</td>
+                        <td>1.3K</td>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
+                              Edit
+                              <i class="typcn typcn-edit btn-icon-append"></i>                          
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">
+                              Delete
+                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>#D2</td>
+                        <td>Correlation natural resources silo</td>
+                        <td>Mitchel Dunford</td>
+                        <td>09 Oct 2019</td>
+                        <td>$ 3233</td>
+                        <td>5.4K</td>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
+                              Edit
+                              <i class="typcn typcn-edit btn-icon-append"></i>                          
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">
+                              Delete
+                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>#D3</td>
+                        <td>social capital compassion social</td>
+                        <td>Pei Canaday</td>
+                        <td>18 Jun 2019</td>
+                        <td>$ 4311</td>
+                        <td>2.1K</td>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
+                              Edit
+                              <i class="typcn typcn-edit btn-icon-append"></i>                          
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">
+                              Delete
+                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>#D4</td>
+                        <td>empower communities thought</td>
+                        <td>Gaynell Sharpton</td>
+                        <td>23 Mar 2019</td>
+                        <td>$ 7743</td>
+                        <td>2.7K</td>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
+                              Edit
+                              <i class="typcn typcn-edit btn-icon-append"></i>                          
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">
+                              Delete
+                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>#D5</td>
+                        <td> Targeted effective; mobilize </td>
+                        <td>Audrie Midyett</td>
+                        <td>22 Aug 2019</td>
+                        <td>$ 2455</td>
+                        <td>1.2K</td>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
+                              Edit
+                              <i class="typcn typcn-edit btn-icon-append"></i>                          
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm btn-icon-text">
+                              Delete
+                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div> -->
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <!-- <footer class="footer">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2022 <a href="https://www.bootstrapdash.com/" class="text-muted" target="_blank">Singuai Bana</a>. Tout droit reservé.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center text-muted">Free <a href="https://www.bootstrapdash.com/" class="text-muted" target="_blank">Singuai Bana</a>Singuai Bana votre tableau de bord</span>
+                    </div>
+                </div>    
+            </div>        
+        </footer> -->
+        
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
 
-    <!-- Custom scripts for all pages-->
-    <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
 
-    <!-- Page level plugins -->
-    <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
-
+  <!-- base:js -->
+  <script src="{{ asset('dasch/vendors/js/vendor.bundle.base.js')}}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="{{ asset('dasch/vendors/chart.js/Chart.min.js')}}"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{{ asset('dasch/js/off-canvas.js')}}"></script>
+  <script src="{{ asset('dasch/js/hoverable-collapse.js')}}"></script>
+  <script src="{{ asset('dasch/js/template.js')}}"></script>
+  <script src="{{ asset('dasch/js/settings.js')}}"></script>
+  <script src="{{ asset('dasch/js/todolist.js')}}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{{ asset('dasch/js/dashboard.js')}}"></script>
+  <!-- End custom js for this page-->
 </body>
 
 </html>
+

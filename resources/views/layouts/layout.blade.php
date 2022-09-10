@@ -21,7 +21,7 @@
 </head>
 <body>
     <div class="container">
-        @yield('content')
+        @yield('Haoua')
     </div>
     <script src="{{ asset ('js/app.js') }}" type="text/js"></script>
     

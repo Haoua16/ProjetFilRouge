@@ -50,6 +50,7 @@ public function create()
             'prenom' => 'required|max:255',
             'numerotelephone' => 'required',
             'nombreplace' => 'required|max:255',
+            'voyages_id' => 'required|max:255',
         ]);
     
         $passagers = passager::create($validatedData);
@@ -100,6 +101,8 @@ public function update(Request $request, $id)
         'prenom' => 'required|max:255',
         'numerotelephone' => 'required',
         'nombreplace' => 'required|max:255',
+        'voyages_id' => 'required|max:255',
+
     ]);
 
     $passagers = passager::whereId($id)->update($validatedData);
@@ -120,4 +123,19 @@ public function update(Request $request, $id)
 
     return redirect('/passager')->with('success', 'passager supprimé avec succèss');
 }
+
+public function directeurpassager()
+{
+    $passagers = passager::all();
+
+    return view('directeurs.directeurpassager', compact('passagers'));
+}
+
+public function comptablepassager()
+{
+    $passagers = passager::all();
+
+    return view('comptables.comptablepassager', compact('passagers'));
+}
+
 }

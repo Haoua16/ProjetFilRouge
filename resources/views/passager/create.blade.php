@@ -4,13 +4,19 @@
 @section('Haoua')
 
 <style>
-  .uper {
-    
-    margin-top: 40px;
+ .uper 
+  {
+    background-color: #F2F4F4;
+  }
+
+  input
+  {
+    border: 2px;
+    border-color: black;
   }
 </style>
 
-<div class="card">
+<div class="card-uper">
   <div class="card-header">
     <h2>Enregistrer un passager</h2>
   </div>
@@ -67,19 +73,25 @@
                       <div class="col-md-6">
                           <div class="form-group">
                             <label class="form-label" for="voyages_id">Voyage</label>
-                            <select style="color:#41A7A5" aria-label="Default select example" name="voyages_id" id="Class-select form-control">
-                          </div>
-                        </div>
-                    </div>
-                              @foreach($voyages as $voyages)
+                            <select style="color:#41A7A5" aria-label="Default select example" name="voyages_id" class="form-control">
+                            @foreach($voyages as $voyages)
                               <option value="{{$voyages->id}}">{{$voyages->villedepart}} {{$voyages->villearrive}} {{$voyages->datedepart}} {{$voyages->heuredepart}}</option>
                               @endforeach
                             </select>
-</div>
+                          </div>
+                        </div>
 
-         </div>              
-  </div>
-  <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                          <button type="submit" class="btn btn-primary mt-3 form-control" style="margin-bottom: -12%;">Ajouter</button>
+                          </div>
+                        </div>
+                    </div>
+                             
+          </div>
+  </div>              
+</div>
+ 
       </form>
   </div>
 </div>

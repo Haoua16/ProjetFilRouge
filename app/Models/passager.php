@@ -24,4 +24,5 @@ class passager extends Model
     {
         return $this->belongsTo(voyage::class, 'voyages_id');
     }
+
 }

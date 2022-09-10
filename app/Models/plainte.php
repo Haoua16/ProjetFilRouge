@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class plainte extends Model
 {
     use HasFactory;
-    protected $fillable = array ('message', 'userId');
+    protected $fillable = array ('message', 'users_id');
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'users_id');
+    }
 }

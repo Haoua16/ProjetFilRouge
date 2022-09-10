@@ -1,6 +1,6 @@
-@extends('dashboard.dashboard')
+@extends('clientdash.dashboard')
 
-@section('Haoua')
+@section('Haby')
 
 
 <style>
@@ -29,9 +29,11 @@
       @csrf
       @method('PATCH')
           <div class="form-group">
-          <label for="Renseignements"><h3>Renseignements</h3></label></br>
-              <label for="nombreplace">Nombre de place:</label>
-              <input type="number" class="new" name="nombreplace" value="{{ $reservations->nombreplace }}"/>
+              <label for="nombreplace">Statut:</label>
+              <select name="statut" id="">
+                <option value="">Changer le Statut</option>
+                <option value="Annulé">Annulé</option>
+              </select>
           </div></br>
           <button type="submit" class="btn btn-primary">Modifier</button>
       </form>

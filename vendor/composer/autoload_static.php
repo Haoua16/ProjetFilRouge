@@ -542,6 +542,7 @@ class ComposerStaticInitdd448aeb9c1b7f81c3d7f429fd74e87c
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CourrierController' => __DIR__ . '/../..' . '/app/Http/Controllers/CourrierController.php',
         'App\\Http\\Controllers\\Dashboard' => __DIR__ . '/../..' . '/app/Http/Controllers/Dashboard.php',
+        'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
         'App\\Http\\Controllers\\DestinationclientController' => __DIR__ . '/../..' . '/app/Http/Controllers/DestinationclientController.php',
         'App\\Http\\Controllers\\DirecteurController' => __DIR__ . '/../..' . '/app/Http/Controllers/DirecteurController.php',
         'App\\Http\\Controllers\\GesCourrierController' => __DIR__ . '/../..' . '/app/Http/Controllers/GesCourrierController.php',

@@ -56,6 +56,11 @@ class User extends Authenticatable
         return $this->hasMany(reservation::class, 'users_id');
     }
 
+    public function plaintes()
+    {
+        return $this->hasMany(plainte::class, 'users_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

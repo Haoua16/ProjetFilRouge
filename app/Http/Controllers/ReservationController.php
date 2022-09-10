@@ -60,6 +60,7 @@ public function create($id)
             $users=Auth::user()->id;
             $reservations = reservation::create([
                 'nombreplace'=>$request['nombreplace'],
+                'statut'=>'En cours',
                 'users_id'=>$users,  
                 'voyages_id'=>$request['voyages_id'], 
             ]);
@@ -110,14 +111,21 @@ public function create($id)
 public function update(Request $request, $id)
 {
     $validatedData = $request->validate([
-        'nombreplace' => 'required|max:255',
+        // 'nombreplace' => 'required|max:255',
+        'statut'=>'required',
         'users_id' => 'max:255',
         'voyages_id' => 'max:255',
     ]);
+    if($validatedData);
+    {
 
-    $reservations = reservation::whereId($id)->update($validatedData);
+            $reservations = reservation::whereId($id)->update([
+            'statut'=>'Annulé',
+            ]);
+    }
 
-    return redirect('/reservation')->with('Success', 'reservations mise à jour avec succèss');
+    return redirect('/clientreserv1')->with('Success', 'reservations mise à jour avec succèss');
+   
 }
 
     /**
@@ -174,6 +182,12 @@ public function gescourriervoyage()
     $voyages = voyage::all();
 
     return view('gescourriers.gescourriervoyage', compact('voyages'));
+}
+public function gescourrierlistevoyage()
+{
+    $voyages = voyage::all();
+
+    return view('gescourriers.gescourrierlistevoyage', compact('voyages'));
 }
 public function gescourrierreserv1()
 {

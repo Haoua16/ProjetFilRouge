@@ -4,9 +4,15 @@
 @section('Tenin')
 
 <style>
-  .uper {
-    
-    margin-top: 40px;
+    .uper 
+  {
+    background-color: #F2F4F4;
+  }
+
+  input
+  {
+    border: 2px;
+    border-color: black;
   }
 </style>
 
@@ -38,8 +44,7 @@
                         <input type="text" class="new form-control" name="numero"/>
                       </div>
                   </div>             
-                </div>
-                <div class="row">
+                
                   <div class="col-md-6">
                       <div class="form-group">
                         <label for="nombreplace">Nombre de place:</label>
@@ -49,20 +54,24 @@
                 </div>
 
                 <div class="row">
-                          <div class="col-md-4">
+                          <div class="col-md-6">
                             <div class="form-group">
-                            <label for="chauffeurs_id">Chauffeur</label>
-                            <select style="color:#41A7A5" aria-label="Default select example" name="chauffeurs_id" id="Class-select form-control">
-                              </div>
-                          </div>             
-                  </div> 
-                            @foreach($chauffeurs as $chauffeurs)
-                               <option value="{{$chauffeurs->id}}">{{$chauffeurs->prenom}} {{$chauffeurs->nom}}</option>
-                            @endforeach
-                            </select>               
-          </div>
-              
-          <button type="submit" class="btn btn-primary">Ajouter</button>
+                              <label for="chauffeurs_id">Chauffeur</label>
+                              <select style="color:#41A7A5" aria-label="Default select example" name="chauffeurs_id" class="form-control">
+                              @foreach($chauffeurs as $chauffeurs)
+                                <option value="{{$chauffeurs->id}}">{{$chauffeurs->prenom}} {{$chauffeurs->nom}}</option>
+                              @endforeach
+                              </select>
+                            </div>
+                          </div>  
+                          
+                          <div class="col-md-6">
+                            <div class="form-group">
+                               <button type="submit" class="btn btn-primary form-control" style="margin-bottom: -15%;">Ajouter</button>
+                            </div>
+                          </div>
+                  </div>                                         
+          </div>            
       </form>
   </div>
 </div>

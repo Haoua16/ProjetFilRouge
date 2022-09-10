@@ -1,114 +1,84 @@
 <!-- index.blade.php -->
+
 @extends('clientdash.dashboard')
 
 @section('Haby')
 
 
-
 <link href="{{ asset ('css/bootstrap.min.css')}}" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <link href="{{ asset ('css/offcanvas.css')}}" rel="stylesheet">
 
-<style>
-  /* .uper {
-    margin-top: 40px;
-  } */
-
-  thead {
-    font-weight: bold;
-    text-align: center;
-    background-color: #800000;
-    cursor: pointer;
-  }
-
-  /* .thead:hover {
-    color:white;
-  } */
-
-  h3{
-    text-align: center;
-    margin-top: -60px;
-    text-transform: uppercase;
-  }
-
-  td{
-    color: white;
-  }
-
-  #uper{
-    background-color: white;
-  }
-</style>
-
-<div class="uper">
-
-  @if(session()->get('success'))
+  <!-- original table -->
+@if(session()->get('success'))
     <div class="alert alert-success">
       {{ session()->get('success') }}  
     </div><br />
   @endif
 
-  <table class="table-striped table-bordered table-hover justify-content-center h-100" style="margin-top: 30px; width: 1200px; margin:auto; color:black; background-color:#003366">
-  <h3 class="text-center">Liste des Voyages</h3></br>
+  <table class="table table-bordered table-responsive" id="scrollb">
+  <div class="titre"  style="margin-top: -7px; font-size: 150%;">Liste des Voyages</div></br>
 
-    <thead>
-        <tr>
-          <!-- <td>ID</td> -->
-          <td class="h5">Ville de départ</td>
-          <td class="h5">Ville d'arrivé</td>
-          <td class="h5">Nom_Chauffeur</td>
-          <td class="h5">Prenom_Chauffeur</td>
-          <td class="h5">N°_bus</td>
-          <td class="h5">Place du bus</td>
-          <td class="h5">Date de départ</td>
-          <td class="h5">Horaire</td>
-          <td class="h5">Rendez-Vous</td>
-          <td colspan="2" class="h5">Action</td>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach($voyages as $voyages)
-        <tr>
-            <!-- <td>{{$voyages->id}}</td> -->
-            <td class="text-center h5">{{$voyages->villedepart}}</td>
-            <td class="text-center h5">{{$voyages->villearrive}}</td>
-            <td class="text-center h5">{{$voyages->chauffeurs->nom}}</td>
-            <td class="text-center h5">{{$voyages->chauffeurs->prenom}}</</td>
-            <td class="text-center h5">{{$voyages->bus->numero}}</td>
-            <td class="text-center h5">{{$voyages->bus->nombreplace}}</</td>
-            <td class="text-center h5">{{$voyages->datedepart}}</td>
-            <td class="text-center h5">{{$voyages->heuredepart}}</td>
-            <td class="text-center h5">{{$voyages->rendezvous}}</td>
-<!--            
-            @if(Auth::check() && Auth::user()->statut=="administrateur")
-             <td><a href="{{ route('voyage.edit', $voyages->id)}}" class="btn btn-success">Modifier</a>
-                @endif
-            </td>
-            @if(Auth::check() && Auth::user()->statut=="administrateur")
-            <td>
+  <thead>
+    <tr>
+      <th scope="col">Ville_Départ</th>
+      <th scope="col">Ville_D'arrivé</th>
+      <th scope="col">Nom_Chauffeur</th>
+      <th scope="col">Prenom_Chauffeur</th>
+      <th scope="col">N°_bus</th>
+      <th scope="col">Place_bus</th>
+      <th scope="col">Date</th>
+      <th scope="col">Horaire</th>
+      <th scope="col">RDV</th>
+      <th scope="col" colspan="2">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach($voyages as $voyages)
+    <tr>
+      <th scope="row">{{$voyages->villedepart}}</th>
+      <td>{{$voyages->villearrive}}</td>
+      <td>{{$voyages->chauffeurs->nom}}</td>
+      <td>{{$voyages->chauffeurs->prenom}}</</td>
+      <td>{{$voyages->bus->numero}}</td>
+      <td>{{$voyages->bus->nombreplace}}</</td>
+      <td>{{$voyages->datedepart}}</td>
+      <td>{{$voyages->heuredepart}}</td>
+      <td>{{$voyages->rendezvous}}</td>
+      <!-- <td>
+      <a href="{{ route('voyage.edit', $voyages->id)}}" class="btn btn-success btn-sm">Modifier</a>
+      </td>
+      <td>
                 <form action="{{ route('voyage.destroy', $voyages->id)}}" method="post">
                   @csrf
                   @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Supprimer</button>
-                </form>
-                @endif
-            </td> -->
-            <!-- @if(Auth::check() && Auth::user()->statut=="administrateur")
-            <td>
-            <a href="{{ route('voyage.show', $voyages->id)}}" class="btn btn-primary">Détails</a>
-            @endif -->
+                  <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                </form>             
             </td>
+     <td>
+            <a href="{{ route('voyage.show', $voyages->id)}}" class="btn btn-primary">Détails</a>
+            
+            </td> -->
+           
+            
             <td>
-            <a href="{{ route('create.voyage', $voyages->id)}}" class="btn btn-primary btn-sm" style="background-color: #800000">Réserver</a>
+            <a href="{{ route('create.voyage', $voyages->id)}}" class="btn btn-primary btn-sm">Réserver</a>
            
             </td>
-        </tr>
+    </tr>
         @endforeach
-    </tbody>
-  </table>
-<div>
+  </tbody>
+</table>
+</div>
 
-@endsection  
+  <!-- End original table -->
 
- 
+  
+<script>
+  $(document).ready(function () {
+    $('#scrollb').DataTable({
+        scrollX: true,
+    });
+});
+</script>
 
+@endsection

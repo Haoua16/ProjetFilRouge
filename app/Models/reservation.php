@@ -9,7 +9,7 @@ class reservation extends Model
 {
     use HasFactory;
 
-    protected $fillable = array ('nombreplace', 'users_id', 'voyages_id');
+    protected $fillable = array ('nombreplace', 'users_id', 'voyages_id', 'statut');
 
     public function users()
     {
@@ -25,5 +25,6 @@ class reservation extends Model
     {
         return $this->belongsTo(User::class, 'users_id');
     }
+
     
 }

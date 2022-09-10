@@ -24,6 +24,7 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\CourrierController' => $baseDir . '/app/Http/Controllers/CourrierController.php',
     'App\\Http\\Controllers\\Dashboard' => $baseDir . '/app/Http/Controllers/Dashboard.php',
+    'App\\Http\\Controllers\\DashboardController' => $baseDir . '/app/Http/Controllers/DashboardController.php',
     'App\\Http\\Controllers\\DestinationclientController' => $baseDir . '/app/Http/Controllers/DestinationclientController.php',
     'App\\Http\\Controllers\\DirecteurController' => $baseDir . '/app/Http/Controllers/DirecteurController.php',
     'App\\Http\\Controllers\\GesCourrierController' => $baseDir . '/app/Http/Controllers/GesCourrierController.php',
