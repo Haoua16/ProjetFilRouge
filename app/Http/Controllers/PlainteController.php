@@ -57,8 +57,11 @@ public function create()
             'message'=>$request['message'],
             'users_id'=>$users,   
         ]);
+        $currentusers = Auth::user()->id;
+
+    $plaintes = plainte::where('users_id', $currentusers)->get();
     
-        return redirect('/plainte')->with('success', 'bus ajouté avec succèss');
+        return view('clients.clientplainte', compact('plaintes'))->with('success', 'plainte ajouté avec succèss');
     }
 }
 
@@ -124,5 +127,16 @@ public function update(Request $request, $id)
 
     return redirect('/plainte')->with('success', 'bus supprimé avec succèss');
 }
+
+public function clientplainte()
+{
+    $currentusers = Auth::user()->id;
+
+    $plaintes = plainte::where('users_id', $currentusers)->get();
+    // dd($plaintes);
+
+    return view('clients.clientplainte', compact('plaintes'));
+}
+
 }
 

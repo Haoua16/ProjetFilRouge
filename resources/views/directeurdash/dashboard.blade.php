@@ -47,7 +47,7 @@
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="{{ asset('dasch/images/faces/face5.jpg')}}" alt="profile"/>
-              <span class="nav-profile-name">{{ Auth::user()->name }} {{ Auth::user()->prenom }}</span>
+              <span class="nav-profile-name">{{ Auth::user()->name }} {{ Auth::user()->prenom }}  EN LIGNE</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -420,6 +420,33 @@
             </div>
 
             </li>
+
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+              <i class="typcn typcn-film menu-icon"></i>
+              <span class="menu-title">Ajouter personnel</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="{{route('admin.formview')}}">Caissiers</a></li>
+              </ul>
+            </div>
+          
+          <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="{{route('compt.formview')}}">Comptable</a></li>
+              </ul>
+            </div>
+
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="{{route('ges.formview')}}">Ges-Courriers</a></li>
+              </ul>
+            </div>
+
+            </li>
+
 
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">

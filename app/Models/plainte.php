@@ -10,7 +10,7 @@ class plainte extends Model
     use HasFactory;
     protected $fillable = array ('message', 'users_id');
 
-    public function users()
+    public function User()
     {
         return $this->belongsTo(User::class, 'users_id');
     }

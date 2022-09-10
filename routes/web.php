@@ -63,6 +63,7 @@ Route::resource('commentaire', 'App\Http\Controllers\CommentaireController');
 
 Route::get('/clientvoyage', [App\Http\Controllers\ReservationController::class, 'clientvoyage'])->name('client.voyage');
 Route::get('/clientreserv1', [App\Http\Controllers\ReservationController::class, 'clientreserv1'])->name('client.reserv');
+Route::get('/clientplainte', [App\Http\Controllers\PlainteController::class, 'clientplainte'])->name('client.plainte');
 
 Route::get('/comptablevoyage', [App\Http\Controllers\ReservationController::class, 'comptablevoyage'])->name('comptable.voyage');
 Route::get('/comptablereservation', [App\Http\Controllers\VoyageController::class, 'comptablereservation'])->name('comptable.reservation');
