@@ -13,7 +13,7 @@
     </div><br />
   @endif
 
-  <table class="table table-bordered table-responsive" id="scrollb">
+  <table class="table table-bordered table-responsive" id="scrollb" style="margin-left: 25%;">
   <div class="titre"  style="margin-top: -7px; font-size: 150%;">Les plaintes</div></br>
 
   <thead>
